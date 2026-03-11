@@ -1,289 +1,694 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bespoke Inquiry | Confeitaria</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #fdfbf7;
-            --text: #121212;
-            --accent: #c5a059;
-            --secondary: #f4f1ea;
-            --border: rgba(18, 18, 18, 0.1);
-            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            --font-h: "Playfair Display", serif;
-            --font-b: "Plus Jakarta Sans", sans-serif;
-        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        
-        body {
-            font-family: var(--font-b);
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Loader */
-        .loader { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg); z-index: 9999; display: flex; justify-content: center; align-items: center; pointer-events: none; }
-        .loader-bar { width: 0%; height: 1px; background: var(--text); }
+<title>Encomendas | Aura de Mel</title>
 
-        /* Nav */
-        .nav { position: fixed; top: 0; width: 100%; padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(253, 251, 247, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-        .nav-logo a { font-family: var(--font-h); font-weight: 800; font-size: 1.4rem; text-decoration: none; color: var(--text); letter-spacing: 2px; }
-        .nav-links { display: flex; gap: 35px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-          /* Burger Menu */
-          .burger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 2000; width: 25px; }
-        .burger span { width: 100%; height: 2px; background: var(--text); transition: var(--transition); }
-        .burger.active span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-        .burger.active span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
 
-/* Mobile Nav Overlay */
-.mobile-nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg); z-index: 1500; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: translateY(-100%); transition: var(--transition); }
-        .mobile-nav.active { transform: translateY(0); }
-        .mobile-nav ul { list-style: none; text-align: center; }
-        .mobile-nav ul li { margin: 25px 0; }
-        .mobile-nav ul a { font-family: var(--font-h); font-size: 2.2rem; text-decoration: none; color: var(--text); text-transform: uppercase; }
-        
-        /* Page Layout */
-        .order-page { min-height: 100vh; padding: 180px 5% 100px; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 100px; max-width: 1600px; margin: 0 auto; }
+<style>
 
-        .order-info h1 { font-family: var(--font-h); font-size: clamp(3rem, 5vw, 5rem); line-height: 1.1; margin-bottom: 30px; }
-        .order-info p { font-size: 1.1rem; line-height: 1.8; opacity: 0.6; margin-bottom: 40px; max-width: 400px; }
-        
-        .order-steps { list-style: none; }
-        .step-item { display: flex; gap: 20px; margin-bottom: 30px; align-items: flex-start; }
-        .step-num { font-family: var(--font-h); font-size: 1.2rem; color: var(--accent); font-weight: 700; border-bottom: 1px solid var(--accent); }
-        .step-text h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-        .step-text p { font-size: 0.85rem; opacity: 0.5; margin: 0; }
-
-        /* Form Styling */
-        .form-container { background: #fff; padding: 60px; box-shadow: 0 40px 100px rgba(0,0,0,0.03); border: 1px solid var(--border); }
-        .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-
-        .input-group { position: relative; display: flex; flex-direction: column; }
-        .full-width { grid-column: span 2; }
-
-        label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; color: var(--accent); }
-        
-        input, select, textarea {
-            padding: 15px 0;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--border);
-            font-family: var(--font-b);
-            font-size: 1rem;
-            color: var(--text);
-            transition: var(--transition);
-        }
-
-        input:focus, select:focus, textarea:focus { border-bottom-color: var(--text); }
-        
-        textarea { height: 120px; resize: none; }
-
-        .submit-area { grid-column: span 2; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-        
-        .btn-submit {
-            padding: 20px 50px;
-            background: var(--text);
-            color: #fff;
-            border: none;
-            font-family: var(--font-b);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-submit:hover { background: var(--accent); transform: translateY(-3px); }
-
-        .form-note { font-size: 0.8rem; opacity: 0.4; max-width: 250px; }
-
-        /* Footer */
-        .footer { padding: 60px 5%; border-top: 1px solid var(--border); background: var(--secondary); text-align: center; }
-        .footer-logo { font-family: var(--font-h); font-size: 1.5rem; margin-bottom: 20px; display: block; text-decoration: none; color: var(--text); font-weight: 800; }
-        .copyright { font-size: 0.75rem; opacity: 0.5; letter-spacing: 1px; text-transform: uppercase; }
-
-        /* Mobile */
-        @media (max-width: 1024px) {
-    .order-page { grid-template-columns: 1fr; padding-top: 120px; }
-    .order-info { text-align: center; }
-    .order-info p { margin: 0 auto 40px; }
-    .order-steps { display: none; }
-    .form-container { padding: 40px 20px; }
-
-    .nav-links { display: none; }
-    .btn-reserve { display: none; }
-    .burger { display: flex; }
+:root{
+--bg:#fdfbf7;
+--text:#121212;
+--accent:#c5a059;
+--secondary:#f4f1ea;
+--border:rgba(18,18,18,0.1);
+--transition:all 0.6s cubic-bezier(0.23,1,0.32,1);
+--font-h:"Playfair Display",serif;
+--font-b:"Plus Jakarta Sans",sans-serif;
 }
 
-        @media (max-width: 768px) {
-            .contact-form { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
-            .submit-area { flex-direction: column; gap: 30px; text-align: center; }
-        }
-    </style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+outline:none;
+}
 
-    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+body{
+font-family:var(--font-b);
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+}
+
+/* LOADER */
+
+.loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:var(--bg);
+z-index:9999;
+display:flex;
+justify-content:center;
+align-items:center;
+pointer-events:none;
+}
+
+.loader-bar{
+width:0%;
+height:1px;
+background:var(--text);
+}
+
+/* NAV */
+
+.nav{
+position:fixed;
+top:0;
+width:100%;
+padding:30px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+background:rgba(253,251,247,0.85);
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(--border);
+}
+
+.nav-logo a{
+font-family:var(--font-h);
+font-weight:800;
+font-size:1.4rem;
+text-decoration:none;
+color:var(--text);
+letter-spacing:2px;
+}
+
+.nav-links{
+display:flex;
+gap:35px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:var(--text);
+font-size:0.75rem;
+font-weight:600;
+text-transform:uppercase;
+letter-spacing:1.5px;
+opacity:0.5;
+transition:0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+opacity:1;
+}
+
+/* BURGER */
+
+.burger{
+display:none;
+flex-direction:column;
+gap:6px;
+cursor:pointer;
+z-index:2000;
+width:25px;
+}
+
+.burger span{
+width:100%;
+height:2px;
+background:var(--text);
+transition:var(--transition);
+}
+
+.burger.active span:nth-child(1){
+transform:translateY(4px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2){
+transform:translateY(-4px) rotate(-45deg);
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:var(--bg);
+z-index:1500;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+transform:translateY(-100%);
+transition:var(--transition);
+padding-top:120px;
+}
+
+.mobile-nav.active{
+transform:translateY(0);
+}
+
+.mobile-nav ul{
+list-style:none;
+text-align:center;
+width:100%;
+}
+
+.mobile-nav li{
+margin:28px 0;
+}
+
+.mobile-nav a{
+font-family:var(--font-h);
+font-size:2.2rem;
+text-decoration:none;
+color:var(--text);
+text-transform:uppercase;
+}
+
+/* PAGE */
+
+.order-page{
+min-height:100vh;
+padding:180px 5% 120px;
+display:grid;
+grid-template-columns:0.8fr 1.2fr;
+gap:100px;
+max-width:1600px;
+margin:0 auto;
+}
+
+.order-info h1{
+font-family:var(--font-h);
+font-size:clamp(3rem,5vw,5rem);
+line-height:1.1;
+margin-bottom:30px;
+}
+
+.order-info p{
+font-size:1.1rem;
+line-height:1.8;
+opacity:0.6;
+margin-bottom:40px;
+max-width:420px;
+}
+
+/* STEPS */
+
+.order-steps{
+list-style:none;
+}
+
+.step-item{
+display:flex;
+gap:20px;
+margin-bottom:30px;
+align-items:flex-start;
+}
+
+.step-num{
+font-family:var(--font-h);
+font-size:1.2rem;
+color:var(--accent);
+font-weight:700;
+border-bottom:1px solid var(--accent);
+}
+
+.step-text h4{
+font-size:0.9rem;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:5px;
+}
+
+.step-text p{
+font-size:0.85rem;
+opacity:0.5;
+margin:0;
+}
+
+/* FORM */
+
+.form-container{
+background:#fff;
+padding:60px;
+box-shadow:0 40px 100px rgba(0,0,0,0.03);
+border:1px solid var(--border);
+}
+
+.contact-form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+.input-group{
+display:flex;
+flex-direction:column;
+}
+
+.full-width{
+grid-column:span 2;
+}
+
+label{
+font-size:0.7rem;
+font-weight:700;
+text-transform:uppercase;
+letter-spacing:2px;
+margin-bottom:10px;
+color:var(--accent);
+}
+
+input,
+select,
+textarea{
+padding:15px 0;
+background:transparent;
+border:none;
+border-bottom:1px solid var(--border);
+font-family:var(--font-b);
+font-size:1rem;
+color:var(--text);
+transition:var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-bottom-color:var(--text);
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+.submit-area{
+grid-column:span 2;
+margin-top:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.btn-submit{
+padding:20px 50px;
+background:var(--text);
+color:#fff;
+border:none;
+font-family:var(--font-b);
+font-weight:700;
+font-size:0.9rem;
+text-transform:uppercase;
+letter-spacing:2px;
+cursor:pointer;
+transition:var(--transition);
+}
+
+.btn-submit:hover{
+background:var(--accent);
+transform:translateY(-3px);
+}
+
+.form-note{
+font-size:0.8rem;
+opacity:0.4;
+max-width:250px;
+}
+
+/* SUPPORT SECTION */
+
+.support-section{
+margin:200px auto 0 auto;
+padding:160px 5%;
+background:var(--secondary);
+max-width:1400px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:120px;
+}
+
+.support-card h3{
+font-family:var(--font-h);
+font-size:2rem;
+margin-bottom:20px;
+}
+
+.support-card p{
+font-size:1rem;
+opacity:0.6;
+line-height:1.8;
+margin-bottom:20px;
+}
+
+.support-card button{
+background:transparent;
+border:1px solid var(--text);
+padding:12px 28px;
+font-weight:600;
+cursor:pointer;
+transition:var(--transition);
+}
+
+.support-card button:hover{
+background:var(--text);
+color:#fff;
+}
+
+/* FOOTER */
+
+.footer{
+padding:160px 5%;
+background:var(--secondary);
+text-align:center;
+border-top:1px solid var(--border);
+margin-top:120px;
+}
+
+.footer-logo{
+font-family:var(--font-h);
+font-size:1.5rem;
+margin-bottom:20px;
+display:block;
+text-decoration:none;
+color:var(--text);
+font-weight:800;
+}
+
+.copyright{
+font-size:0.75rem;
+opacity:0.5;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+/* MOBILE */
+
+@media (max-width:1024px){
+
+.order-page{
+grid-template-columns:1fr;
+padding-top:120px;
+}
+
+.order-info{
+text-align:center;
+}
+
+.order-info p{
+margin:0 auto 40px;
+}
+
+.order-steps{
+display:none;
+}
+
+.form-container{
+padding:40px 20px;
+}
+
+.nav-links{
+display:none;
+}
+
+.burger{
+display:flex;
+}
+
+.support-section{
+grid-template-columns:1fr;
+gap:60px;
+text-align:center;
+}
+
+}
+
+@media (max-width:768px){
+
+.contact-form{
+grid-template-columns:1fr;
+}
+
+.full-width{
+grid-column:span 1;
+}
+
+.submit-area{
+flex-direction:column;
+gap:30px;
+text-align:center;
+}
+
+}
+
+</style>
+
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
 </head>
 
-<script>
-    const burger = document.getElementById('burgerToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
-    });
-    </script>
 <body>
 
-    <div class="loader">
-        <div class="loader-bar"></div>
-    </div>
+<div class="loader">
+<div class="loader-bar"></div>
+</div>
 
-    <nav class="nav">
-        <div class="nav-logo">
-            <a href="index.html">AURA DE MEL</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Início</a></li>
-            <li><a href="menu.html">Coleção</a></li>
-            <li><a href="gallery.html">O Atelier</a></li>
-            <li><a href="order.html">Encomendas</a></li>
-            <li><a href="contact.html">Contato</a></li>
-        </ul>
-        <div class="nav-cta">
-            <button class="btn-reserve">Reservar Agora</button>
-            <div class="burger" id="burgerToggle">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+<nav class="nav">
 
-    <div class="mobile-nav" id="mobileMenu">
-        <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="menu.html">Coleção</a></li>
-            <li><a href="gallery.html">O Atelier</a></li>
-            <li><a href="order.html">Encomendas</a></li>
-            <li><a href="contact.html">Contato</a></li>
-        </ul>
-    </div>
+<div class="nav-logo">
+<a href="index.html">AURA DE MEL</a>
+</div>
 
-    <main>
-        <section class="order-page">
-            <div class="order-info">
-                <h1>Crafting Your<br>Masterpiece.</h1>
-                <p>Provide the details of your vision, and our lead pastry architect will contact you within 24 hours to begin the design process.</p>
-                
-                <div class="order-steps">
-                    <div class="step-item">
-                        <span class="step-num">01</span>
-                        <div class="step-text">
-                            <h4>Design Concept</h4>
-                            <p>Share your theme, colors, and inspirations.</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <span class="step-num">02</span>
-                        <div class="step-text">
-                            <h4>Tasting & Quote</h4>
-                            <p>Select flavors and receive a bespoke estimate.</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <span class="step-num">03</span>
-                        <div class="step-text">
-                            <h4>The Creation</h4>
-                            <p>We handcraft your cake for the special day.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<ul class="nav-links">
+<li><a href="index.html">Início</a></li>
+<li><a href="menu.html">Coleção</a></li>
+<li><a href="gallery.html">Atelier</a></li>
+<li><a href="order.html" class="active">Encomendas</a></li>
+</ul>
 
-            <div class="form-container">
-                <form class="contact-form">
-                    <div class="input-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="e.g. Julianne Moore" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="email@example.com" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Phone Number</label>
-                        <input type="tel" placeholder="+1 (555) 000-0000">
-                    </div>
-                    <div class="input-group">
-                        <label>Event Type</label>
-                        <select required>
-                            <option value="" disabled selected>Select Category</option>
-                            <option>Wedding Gala</option>
-                            <option>Corporate Branding</option>
-                            <option>Private Celebration</option>
-                            <option>Seasonal Collection</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label>Event Date</label>
-                        <input type="date" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Servings Needed</label>
-                        <input type="number" placeholder="Min. 20" min="20">
-                    </div>
-                    <div class="input-group full-width">
-                        <label>Design Vision</label>
-                        <textarea placeholder="Describe textures, heights, specific flavors, or the story behind the cake..."></textarea>
-                    </div>
-                    
-                    <div class="submit-area">
-                        <p class="form-note">By submitting, you agree to our artisan consultation terms.</p>
-                        <button type="submit" class="btn-submit">Initialize Request</button>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </main>
+<div class="nav-cta">
 
-    <footer class="footer">
-        <a href="index.html" class="footer-logo">CONFEITARIA</a>
-        <p class="copyright">&copy; 2026 CONFEITARIA. Powered by FileFlow</p>
-    </footer>
+<div class="burger" id="burgerToggle">
+<span></span>
+<span></span>
+</div>
 
-    <script>
-        const lenis = new Lenis();
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+</div>
 
-        window.addEventListener('load', () => {
-            const tl = gsap.timeline();
-            tl.to(".loader-bar", { width: "100%", duration: 0.5 })
-              .to(".loader", { yPercent: -100, duration: 0.8, ease: "expo.inOut" })
-              .from(".order-info h1, .order-info p", { y: 30, opacity: 0, stagger: 0.1, duration: 0.8, ease: "power3.out" }, "-=0.3")
-              .from(".step-item", { x: -20, opacity: 0, stagger: 0.1, duration: 0.6 }, "-=0.5")
-              .from(".form-container", { scale: 0.98, opacity: 0, duration: 1, ease: "expo.out" }, "-=0.8");
-        });
-    </script>
+</nav>
+
+<div class="mobile-nav" id="mobileMenu">
+
+<ul>
+<li><a href="index.html">Início</a></li>
+<li><a href="menu.html">Coleção</a></li>
+<li><a href="gallery.html">Atelier</a></li>
+<li><a href="order.html">Encomendas</a></li>
+</ul>
+
+</div>
+
+<main>
+
+<section class="order-page">
+
+<div class="order-info">
+
+<h1>Crafting Your<br>Masterpiece.</h1>
+
+<p>Provide the details of your vision and our pastry team will contact you within 24 hours to begin the design process.</p>
+
+<ul class="order-steps">
+
+<li class="step-item">
+<span class="step-num">01</span>
+<div class="step-text">
+<h4>Design Concept</h4>
+<p>Share your theme, colors and inspirations.</p>
+</div>
+</li>
+
+<li class="step-item">
+<span class="step-num">02</span>
+<div class="step-text">
+<h4>Tasting & Quote</h4>
+<p>Select flavors and receive a bespoke estimate.</p>
+</div>
+</li>
+
+<li class="step-item">
+<span class="step-num">03</span>
+<div class="step-text">
+<h4>The Creation</h4>
+<p>We craft the cake for your celebration.</p>
+</div>
+</li>
+
+</ul>
+
+</div>
+
+<div class="form-container">
+
+<form class="contact-form">
+
+<div class="input-group">
+<label>Full Name</label>
+<input type="text" required>
+</div>
+
+<div class="input-group">
+<label>Email Address</label>
+<input type="email" required>
+</div>
+
+<div class="input-group">
+<label>Phone Number</label>
+<input type="tel">
+</div>
+
+<div class="input-group">
+<label>Event Type</label>
+<select>
+<option>Wedding</option>
+<option>Corporate</option>
+<option>Birthday</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Event Date</label>
+<input type="date">
+</div>
+
+<div class="input-group">
+<label>Servings Needed</label>
+<input type="number">
+</div>
+
+<div class="input-group full-width">
+<label>Design Vision</label>
+<textarea></textarea>
+</div>
+
+<div class="submit-area">
+
+<p class="form-note">
+By submitting you agree to our consultation terms.
+</p>
+
+<button class="btn-submit">
+Initialize Request
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+<section class="support-section">
+
+<div class="support-card">
+
+<h3>Need Help?</h3>
+
+<p>
+If you are not placing an order and simply need assistance, our team can help with general inquiries, partnerships or questions about our atelier.
+</p>
+
+<button onclick="window.location.href='mailto:contato@aurademel.com.br'">
+Contact Support
+</button>
+
+</div>
+
+<div class="support-card">
+
+<h3>Visit the Atelier</h3>
+
+<p>
+Private tastings and consultations are available by appointment. Schedule a meeting with our pastry architect team.
+</p>
+
+<button onclick="window.location.href='tel:+5562981670933'">
+Schedule Visit
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+<a href="index.html" class="footer-logo">
+AURA DE MEL
+</a>
+
+<p class="copyright">
+© 2026 Aura de Mel. Powered by FileFlow
+</p>
+
+</footer>
+
+<script>
+
+const burger=document.getElementById("burgerToggle")
+const mobileMenu=document.getElementById("mobileMenu")
+
+burger.addEventListener("click",()=>{
+
+burger.classList.toggle("active")
+mobileMenu.classList.toggle("active")
+
+if(mobileMenu.classList.contains("active")){
+document.body.style.overflow="hidden"
+}else{
+document.body.style.overflow="auto"
+}
+
+})
+
+const lenis=new Lenis()
+
+function raf(time){
+lenis.raf(time)
+requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+
+window.addEventListener("load",()=>{
+
+const tl=gsap.timeline()
+
+tl.to(".loader-bar",{width:"100%",duration:0.5})
+.to(".loader",{yPercent:-100,duration:0.8,ease:"expo.inOut"})
+.from(".order-info h1",{y:40,opacity:0,duration:1})
+.from(".order-info p",{y:20,opacity:0,duration:1},"-=0.6")
+.from(".form-container",{scale:0.98,opacity:0,duration:1.2},"-=0.7")
+
+})
+
+</script>
+
 </body>
 </html>
