@@ -177,7 +177,7 @@ color:var(--text);
 text-transform:uppercase;
 }
 
-/* PAGE */
+/* PAGE GRID SYSTEM */
 
 .order-page{
 min-height:100vh;
@@ -237,76 +237,8 @@ font-size:0.85rem;
 opacity:0.5;
 margin:0;
 }
-/* MOBILE FORM FIX */
 
-@media (max-width: 768px){
-
-.order-hero{
-padding:120px 8% 60px;
-text-align:center;
-}
-
-.order-hero h1{
-font-size:2.6rem;
-line-height:1.15;
-}
-
-.order-hero p{
-font-size:1rem;
-line-height:1.6;
-max-width:100%;
-margin-top:20px;
-}
-
-.order-container{
-padding:0 6%;
-}
-
-.order-form{
-padding:40px 25px;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:40px;
-}
-
-.form-group{
-width:100%;
-}
-
-.form-group label{
-font-size:0.75rem;
-letter-spacing:2px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-width:100%;
-font-size:1rem;
-padding:12px 0;
-}
-
-textarea{
-min-height:120px;
-}
-
-.form-footer{
-margin-top:40px;
-text-align:center;
-}
-
-.submit-btn{
-width:100%;
-padding:16px;
-font-size:0.9rem;
-letter-spacing:2px;
-}
-
-}
-/* FORM */
+/* FORM CONTAINER */
 
 .form-container{
 background:#fff;
@@ -350,6 +282,7 @@ font-family:var(--font-b);
 font-size:1rem;
 color:var(--text);
 transition:var(--transition);
+border-radius:0;
 }
 
 input:focus,
@@ -396,6 +329,63 @@ opacity:0.4;
 max-width:250px;
 }
 
+/* POPUP CONTACT FORM (HIDDEN BY DEFAULT) */
+
+.modal-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(18,18,18,0.3);
+backdrop-filter:blur(15px);
+z-index:9999;
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+transition:var(--transition);
+}
+
+.modal-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.modal-content{
+background:var(--bg);
+width:90%;
+max-width:600px;
+padding:60px;
+position:relative;
+transform:translateY(40px);
+transition:var(--transition);
+border:1px solid var(--border);
+box-shadow:0 30px 60px rgba(0,0,0,0.1);
+}
+
+.modal-overlay.active .modal-content{
+transform:translateY(0);
+}
+
+.close-modal{
+position:absolute;
+top:30px;
+right:30px;
+background:none;
+border:none;
+font-size:1.5rem;
+cursor:pointer;
+color:var(--text);
+opacity:0.5;
+transition:0.3s;
+}
+
+.close-modal:hover{
+opacity:1;
+}
+
 /* SUPPORT SECTION */
 
 .support-section{
@@ -428,6 +418,9 @@ padding:12px 28px;
 font-weight:600;
 cursor:pointer;
 transition:var(--transition);
+text-transform:uppercase;
+font-size:0.8rem;
+letter-spacing:1px;
 }
 
 .support-card button:hover{
@@ -462,17 +455,21 @@ letter-spacing:1px;
 text-transform:uppercase;
 }
 
-/* MOBILE */
+/* MOBILE RESPONSIVENESS FIXES */
 
 @media (max-width:1024px){
 
 .order-page{
 grid-template-columns:1fr;
-padding-top:120px;
+padding-top:140px;
+gap:60px;
 }
 
 .order-info{
 text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
 .order-info p{
@@ -480,11 +477,11 @@ margin:0 auto 40px;
 }
 
 .order-steps{
-display:none;
+display:none; /* Keep hidden on mobile as per design */
 }
 
 .form-container{
-padding:40px 20px;
+padding:40px 25px;
 }
 
 .nav-links{
@@ -499,6 +496,7 @@ display:flex;
 grid-template-columns:1fr;
 gap:60px;
 text-align:center;
+padding:80px 8%;
 }
 
 }
@@ -507,6 +505,7 @@ text-align:center;
 
 .contact-form{
 grid-template-columns:1fr;
+gap:25px;
 }
 
 .full-width{
@@ -517,6 +516,20 @@ grid-column:span 1;
 flex-direction:column;
 gap:30px;
 text-align:center;
+}
+
+.btn-submit{
+width:100%;
+padding:18px;
+}
+
+.modal-content{
+padding:40px 20px;
+}
+
+.modal-content h3{
+font-size:1.5rem;
+margin-bottom:15px;
 }
 
 }
@@ -534,6 +547,32 @@ text-align:center;
 <div class="loader-bar"></div>
 </div>
 
+<div class="modal-overlay" id="contactModal">
+<div class="modal-content">
+<button class="close-modal" id="closeModal">&times;</button>
+<h3 style="font-family: var(--font-h); font-size: 2rem; margin-bottom: 25px;">Direct Inquiry</h3>
+<p style="margin-bottom: 30px; opacity: 0.6; font-size: 0.9rem;">Have a specific question? Send us a message and our concierge team will assist you shortly.</p>
+
+<form class="modal-form">
+<div style="display: flex; flex-direction: column; gap: 20px;">
+<div class="input-group">
+<label>Name</label>
+<input type="text" placeholder="Your full name" required>
+</div>
+<div class="input-group">
+<label>Email</label>
+<input type="email" placeholder="email@example.com" required>
+</div>
+<div class="input-group">
+<label>Message</label>
+<textarea placeholder="How can we help you?"></textarea>
+</div>
+<button type="submit" class="btn-submit" style="width: 100%;">Send Message</button>
+</div>
+</form>
+</div>
+</div>
+
 <nav class="nav">
 
 <div class="nav-logo">
@@ -548,25 +587,21 @@ text-align:center;
 </ul>
 
 <div class="nav-cta">
-
 <div class="burger" id="burgerToggle">
 <span></span>
 <span></span>
 </div>
-
 </div>
 
 </nav>
 
 <div class="mobile-nav" id="mobileMenu">
-
 <ul>
 <li><a href="index.html">Início</a></li>
 <li><a href="menu.html">Coleção</a></li>
 <li><a href="gallery.html">Atelier</a></li>
 <li><a href="order.html">Encomendas</a></li>
 </ul>
-
 </div>
 
 <main>
@@ -659,7 +694,7 @@ text-align:center;
 By submitting you agree to our consultation terms.
 </p>
 
-<button class="btn-submit">
+<button type="submit" class="btn-submit">
 Initialize Request
 </button>
 
@@ -681,7 +716,7 @@ Initialize Request
 If you are not placing an order and simply need assistance, our team can help with general inquiries, partnerships or questions about our atelier.
 </p>
 
-<button onclick="window.location.href='mailto:contato@aurademel.com.br'">
+<button id="openContact">
 Contact Support
 </button>
 
@@ -719,6 +754,7 @@ AURA DE MEL
 
 <script>
 
+// BURGER MENU LOGIC
 const burger=document.getElementById("burgerToggle")
 const mobileMenu=document.getElementById("mobileMenu")
 
@@ -735,6 +771,32 @@ document.body.style.overflow="auto"
 
 })
 
+// MODAL POPUP LOGIC
+const openContactBtn = document.getElementById("openContact");
+const closeModalBtn = document.getElementById("closeModal");
+const modalOverlay = document.getElementById("contactModal");
+
+openContactBtn.addEventListener("click", () => {
+    modalOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+});
+
+closeModalBtn.addEventListener("click", () => {
+    modalOverlay.classList.remove("active");
+    if(!mobileMenu.classList.contains("active")) {
+        document.body.style.overflow = "auto";
+    }
+});
+
+// CLOSE MODAL ON OVERLAY CLICK
+modalOverlay.addEventListener("click", (e) => {
+    if(e.target === modalOverlay) {
+        modalOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+    }
+});
+
+// SMOOTH SCROLL (LENIS)
 const lenis=new Lenis()
 
 function raf(time){
@@ -744,6 +806,7 @@ requestAnimationFrame(raf)
 
 requestAnimationFrame(raf)
 
+// ENTRANCE ANIMATIONS (GSAP)
 window.addEventListener("load",()=>{
 
 const tl=gsap.timeline()
