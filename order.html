@@ -251,6 +251,7 @@ border:1px solid var(--border);
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:40px;
+width:100%;
 }
 
 .input-group{
@@ -297,11 +298,12 @@ resize:none;
 }
 
 .submit-area{
-grid-column:span 2;
+grid-column:1 / -1;
 margin-top:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+width:100%;
 }
 
 .btn-submit{
@@ -506,10 +508,19 @@ padding:80px 8%;
 .contact-form{
 grid-template-columns:1fr;
 gap:25px;
+width:100%;
+}
+
+.form-container{
+padding:35px 20px;
+}
+
+.input-group{
+width:100%;
 }
 
 .full-width{
-grid-column:span 1;
+grid-column:1 / -1;
 }
 
 .submit-area{
