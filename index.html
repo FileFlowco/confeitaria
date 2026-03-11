@@ -137,6 +137,23 @@
             .footer-top { gap: 40px; margin-bottom: 40px; }
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
         }
+        .btn-reserve{
+padding:12px 28px;
+background:#121212;
+color:#fff;
+text-decoration:none;
+font-family:var(--font-b);
+font-size:0.75rem;
+font-weight:600;
+letter-spacing:1.5px;
+text-transform:uppercase;
+transition:0.3s;
+display:inline-block;
+}
+
+.btn-reserve:hover{
+background:var(--accent);
+}
     </style>
 
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -153,31 +170,38 @@
     </div>
 
     <nav class="nav">
-        <div class="nav-logo">
-            <a href="index.html">AURA DE MEL</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html"class="active">Início</a></li>
-            <li><a href="menu.html">Coleção</a></li>
-            <li><a href="gallery.html">Atelier</a></li>
-            <li><a href="order.html">Encomendas</a></li>
-            </ul>
-        <div class="nav-cta">
-            <button class="btn-reserve">Reservar Agora</button>
-            <div class="burger" id="burgerToggle">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
+        <div class="nav-logo">
+        <a href="index.html">AURA DE MEL</a>
+        </div>
+        
+        <ul class="nav-links">
+        <li><a href="index.html" class="active">Início</a></li>
+        <li><a href="menu.html">Coleção</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="order.html">Encomendas & contato</a></li>
+    </ul>
+        
+        <div class="nav-cta">
+        
+        <a href="order.html" class="btn-reserve">
+        Fazer Encomenda
+        </a>
+        
+        <div class="burger" id="burgerToggle">
+        <span></span>
+        <span></span>
+        </div>
+        
+        </div>
+        
+        </nav>
     <div class="mobile-nav" id="mobileMenu">
         <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="menu.html">Coleção</a></li>
-            <li><a href="gallery.html">O Atelier</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="order.html">Encomendas</a></li>
-            <li><a href="contact.html">Contato</a></li>
         </ul>
     </div>
 
