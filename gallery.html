@@ -42,6 +42,68 @@
         .nav-links a { text-decoration: none; color: var(--text); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { opacity: 1; }
 
+        .burger{
+display:none;
+flex-direction:column;
+gap:6px;
+cursor:pointer;
+z-index:2000;
+width:25px;
+}
+
+.burger span{
+width:100%;
+height:2px;
+background:var(--text);
+transition:var(--transition);
+}
+
+.burger.active span:nth-child(1){
+transform:translateY(4px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2){
+transform:translateY(-4px) rotate(-45deg);
+}
+
+.mobile-nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:var(--bg);
+z-index:1500;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+transform:translateY(-100%);
+transition:var(--transition);
+padding-top:120px;
+}
+
+.mobile-nav.active{
+transform:translateY(0);
+}
+
+.mobile-nav ul{
+list-style:none;
+text-align:center;
+width:100%;
+}
+
+.mobile-nav li{
+margin:28px 0;
+}
+
+.mobile-nav a{
+font-family:var(--font-h);
+font-size:2.2rem;
+text-decoration:none;
+color:var(--text);
+text-transform:uppercase;
+}
         /* Header */
         .gallery-header { padding: 180px 5% 60px; text-align: center; }
         .gallery-header span { font-size: 0.75rem; letter-spacing: 4px; color: var(--accent); font-weight: 800; text-transform: uppercase; }
@@ -75,9 +137,25 @@
 
         /* Mobile Adjustments */
         @media (max-width: 1024px) {
-            .nav-links, .nav-cta { display: none; }
-            .gallery-card { width: 280px; height: 400px; }
-        }
+
+.nav-links{
+display:none;
+}
+
+.btn-cta{
+display:none;
+}
+
+.burger{
+display:flex;
+}
+
+.gallery-card{
+width:280px;
+height:400px;
+}
+
+}
 
         @media (max-width: 768px) {
             .gallery-header h1 { font-size: 2.8rem; }
@@ -95,20 +173,43 @@
     </div>
 
     <nav class="nav">
+
         <div class="nav-logo">
-            <a href="index.html">CONFEITARIA</a>
+        <a href="index.html">CONFEITARIA</a>
         </div>
+        
         <ul class="nav-links">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="menu.html">Coleção</a></li>
-            <li><a href="gallery.html" class="active">Atelier</a></li>
-            <li><a href="order.html">Encomendas</a></li>
-            <li><a href="contact.html">Contato</a></li>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="menu.html">Coleção</a></li>
+        <li><a href="gallery.html" class="active">Atelier</a></li>
+        <li><a href="order.html">Encomendas</a></li>
+        <li><a href="contact.html">Contato</a></li>
         </ul>
+        
         <div class="nav-cta">
-            <a href="order.html" class="btn-cta" style="text-decoration: none; background: var(--text); color: #fff; padding: 12px 25px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Solicitar Orçamento</a>
+        
+        <a href="order.html" class="btn-cta" style="text-decoration:none;background:var(--text);color:#fff;padding:12px 25px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;">Solicitar Orçamento</a>
+        
+        <div class="burger" id="burgerToggle">
+        <span></span>
+        <span></span>
         </div>
-    </nav>
+        
+        </div>
+        
+        </nav>
+        
+        <div class="mobile-nav" id="mobileMenu">
+        
+        <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="menu.html">Coleção</a></li>
+        <li><a href="gallery.html">Atelier</a></li>
+        <li><a href="order.html">Encomendas</a></li>
+        <li><a href="contact.html">Contato</a></li>
+        </ul>
+        
+        </div>
 
     <main>
         <section class="gallery-header">
@@ -187,5 +288,25 @@
             });
         });
     </script>
+    
+    <script>
+
+        const burger=document.getElementById("burgerToggle")
+        const mobileMenu=document.getElementById("mobileMenu")
+        
+        burger.addEventListener("click",()=>{
+        
+        burger.classList.toggle("active")
+        mobileMenu.classList.toggle("active")
+        
+        if(mobileMenu.classList.contains("active")){
+        document.body.style.overflow="hidden"
+        }else{
+        document.body.style.overflow="auto"
+        }
+        
+        })
+        
+        </script>
 </body>
 </html>
