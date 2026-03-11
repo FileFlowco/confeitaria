@@ -564,23 +564,36 @@ margin-bottom:15px;
 <h3 style="font-family: var(--font-h); font-size: 2rem; margin-bottom: 25px;">Direct Inquiry</h3>
 <p style="margin-bottom: 30px; opacity: 0.6; font-size: 0.9rem;">Have a specific question? Send us a message and our concierge team will assist you shortly.</p>
 
-<form class="modal-form">
-<div style="display: flex; flex-direction: column; gap: 20px;">
-<div class="input-group">
-<label>Name</label>
-<input type="text" placeholder="Your full name" required>
-</div>
-<div class="input-group">
-<label>Email</label>
-<input type="email" placeholder="email@example.com" required>
-</div>
-<div class="input-group">
-<label>Message</label>
-<textarea placeholder="How can we help you?"></textarea>
-</div>
-<button type="submit" class="btn-submit" style="width: 100%;">Send Message</button>
-</div>
-</form>
+<form class="modal-form" action="https://formsubmit.co/pqpk03@outlook.com" method="POST">
+
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="Aura de Mel Support Message">
+    <input type="hidden" name="_template" value="table">
+    
+    <div style="display:flex;flex-direction:column;gap:20px;">
+    
+    <div class="input-group">
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Your full name" required>
+    </div>
+    
+    <div class="input-group">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="email@example.com" required>
+    </div>
+    
+    <div class="input-group">
+    <label>Message</label>
+    <textarea name="message" placeholder="How can we help you?"></textarea>
+    </div>
+    
+    <button type="submit" class="btn-submit" style="width:100%;">
+    Send Message
+    </button>
+    
+    </div>
+    
+    </form>
 </div>
 </div>
 
@@ -657,64 +670,68 @@ margin-bottom:15px;
 
 <div class="form-container">
 
-<form class="contact-form">
-
-<div class="input-group">
-<label>Full Name</label>
-<input type="text" required>
-</div>
-
-<div class="input-group">
-<label>Email Address</label>
-<input type="email" required>
-</div>
-
-<div class="input-group">
-<label>Phone Number</label>
-<input type="tel">
-</div>
-
-<div class="input-group">
-<label>Event Type</label>
-<select>
-<option>Wedding</option>
-<option>Corporate</option>
-<option>Birthday</option>
-<option>Other</option>
-</select>
-</div>
-
-<div class="input-group">
-<label>Event Date</label>
-<input type="date">
-</div>
-
-<div class="input-group">
-<label>Servings Needed</label>
-<input type="number">
-</div>
-
-<div class="input-group full-width">
-<label>Design Vision</label>
-<textarea></textarea>
-</div>
-
-<div class="submit-area">
-
-<p class="form-note">
-By submitting you agree to our consultation terms.
-</p>
-
-<button type="submit" class="btn-submit">
-Initialize Request
-</button>
-
-</div>
-
-</form>
-
-</div>
-
+    <form class="contact-form" action="https://formsubmit.co/pqpk03@outlook.com" method="POST">
+    
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Aura de Mel Order">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_honey" style="display:none">
+    <input type="hidden" name="_next" value="thanks.html">    
+    <div class="input-group">
+    <label>Full Name</label>
+    <input type="text" name="name" required>
+    </div>
+    
+    <div class="input-group">
+    <label>Email Address</label>
+    <input type="email" name="email" required>
+    </div>
+    
+    <div class="input-group">
+    <label>Phone Number</label>
+    <input type="tel" name="phone">
+    </div>
+    
+    <div class="input-group">
+    <label>Event Type</label>
+    <select name="event_type">
+    <option>Wedding</option>
+    <option>Corporate</option>
+    <option>Birthday</option>
+    <option>Other</option>
+    </select>
+    </div>
+    
+    <div class="input-group">
+    <label>Event Date</label>
+    <input type="date" name="event_date">
+    </div>
+    
+    <div class="input-group">
+    <label>Servings Needed</label>
+    <input type="number" name="servings">
+    </div>
+    
+    <div class="input-group full-width">
+    <label>Design Vision</label>
+    <textarea name="design_vision"></textarea>
+    </div>
+    
+    <div class="submit-area">
+    
+    <p class="form-note">
+    By submitting you agree to our consultation terms.
+    </p>
+    
+    <button type="submit" class="btn-submit">
+    Initialize Request
+    </button>
+    
+    </div>
+    
+    </form>
+    
+    </div>
 </section>
 
 <section class="support-section">
