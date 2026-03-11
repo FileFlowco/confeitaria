@@ -118,13 +118,16 @@
 
         /* Mobile */
         @media (max-width: 1024px) {
-            .order-page { grid-template-columns: 1fr; padding-top: 120px; }
-            .order-info { text-align: center; }
-            .order-info p { margin: 0 auto 40px; }
-            .order-steps { display: none; }
-            .form-container { padding: 40px 20px; }
-            .nav-links, .nav-cta { display: none; }
-        }
+    .order-page { grid-template-columns: 1fr; padding-top: 120px; }
+    .order-info { text-align: center; }
+    .order-info p { margin: 0 auto 40px; }
+    .order-steps { display: none; }
+    .form-container { padding: 40px 20px; }
+
+    .nav-links { display: none; }
+    .btn-reserve { display: none; }
+    .burger { display: flex; }
+}
 
         @media (max-width: 768px) {
             .contact-form { grid-template-columns: 1fr; }
@@ -136,6 +139,17 @@
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
+
+<script>
+    const burger = document.getElementById('burgerToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+    </script>
 <body>
 
     <div class="loader">
