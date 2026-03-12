@@ -123,10 +123,26 @@ transition:0.3s;
 }
 
 .nav-links a:hover,
+
 .nav-links a.active{
 opacity:1;
 }
+.mobile-links{
+list-style:none;
+text-align:center;
+}
 
+.mobile-links li{
+margin:25px 0;
+}
+
+.mobile-links a{
+font-family:var(--font-h);
+font-size:2.2rem;
+text-decoration:none;
+color:var(--text);
+text-transform:uppercase;
+}
 /* BURGER */
 
 .burger{
@@ -640,7 +656,7 @@ margin-bottom:15px;
 </nav>
 
 <div class="mobile-nav" id="mobileMenu">
-    <ul class="nav-links">
+    <ul class="mobile-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="menu.html">Coleção</a></li>
         <li><a href="gallery.html">Gallery</a></li>
