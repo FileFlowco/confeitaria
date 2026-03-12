@@ -15,15 +15,16 @@
 
 <style>
 
-:root{
---bg:#fdfbf7;
---text:#121212;
---accent:#c5a059;
---secondary:#f4f1ea;
---border:rgba(18,18,18,0.1);
---transition:all 0.6s cubic-bezier(0.23,1,0.32,1);
---font-h:"Playfair Display",serif;
---font-b:"Plus Jakarta Sans",sans-serif;
+:root {
+
+--bg: #f6f1e9; 
+--text: #2e2e2e;    
+--accent: #e89aa3;     
+--secondary: #e9f1f4;    
+--border: rgba(46, 46, 46, 0.08);
+--transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+--font-h: "Playfair Display", serif;
+--font-b: "Plus Jakarta Sans", sans-serif;
 }
 
 *{
@@ -65,7 +66,7 @@ background:var(--text);
 
 /* NAV */
 
- .nav { position: fixed; top: 0; width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(253, 251, 247, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+ .nav { position: fixed; top: 0; width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background:  rgba(246, 241, 233, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
         .nav-logo a { font-family: var(--font-h); font-weight: 800; font-size: 1.4rem; text-decoration: none; color: var(--text); letter-spacing: 2px; }
         
         .nav-links { display: flex; gap: 35px; list-style: none; }
@@ -237,9 +238,9 @@ margin:0;
 /* FORM CONTAINER */
 
 .form-container{
-background:#fff;
+background:#f9e4e7;
 padding:60px;
-box-shadow:0 40px 100px rgba(0,0,0,0.03);
+box-shadow:0 40px 100px rgba(0,0,0,0.06);
 border:1px solid var(--border);
 }
 
@@ -265,7 +266,7 @@ font-weight:700;
 text-transform:uppercase;
 letter-spacing:2px;
 margin-bottom:10px;
-color:var(--accent);
+color:#7a4a3a;
 }
 
 input,
@@ -274,10 +275,10 @@ textarea{
 padding:15px 0;
 background:transparent;
 border:none;
-border-bottom:1px solid var(--border);
+border-bottom:1px solid rgba(74,44,31,0.25);
 font-family:var(--font-b);
 font-size:1rem;
-color:var(--text);
+color:#4a2c1f;
 transition:var(--transition);
 border-radius:0;
 }
@@ -285,7 +286,7 @@ border-radius:0;
 input:focus,
 select:focus,
 textarea:focus{
-border-bottom-color:var(--text);
+border-bottom-color:#4a2c1f;
 }
 
 textarea{
@@ -304,7 +305,7 @@ width:100%;
 
 .btn-submit{
 padding:20px 50px;
-background:var(--text);
+background:#9fc2d6;
 color:#fff;
 border:none;
 font-family:var(--font-b);
@@ -317,14 +318,15 @@ transition:var(--transition);
 }
 
 .btn-submit:hover{
-background:var(--accent);
+background:#e89aa3;
 transform:translateY(-3px);
 }
 
 .form-note{
 font-size:0.8rem;
-opacity:0.4;
+opacity:0.5;
 max-width:250px;
+color:#6b6b6b;
 }
 
 /* POPUP CONTACT FORM (HIDDEN BY DEFAULT) */
@@ -359,8 +361,8 @@ padding:60px;
 position:relative;
 transform:translateY(40px);
 transition:var(--transition);
-border:1px solid var(--border);
 box-shadow:0 30px 60px rgba(0,0,0,0.1);
+border:1px solid var(--border);
 }
 
 .modal-overlay.active .modal-content{
@@ -410,8 +412,9 @@ margin-bottom:20px;
 }
 
 .support-card button{
-background:transparent;
-border:1px solid var(--text);
+background:#f3b3bb;
+border:none;
+outline:none;
 padding:12px 28px;
 font-weight:600;
 cursor:pointer;
@@ -419,10 +422,11 @@ transition:var(--transition);
 text-transform:uppercase;
 font-size:0.8rem;
 letter-spacing:1px;
+color:#4a2c1f;
 }
 
 .support-card button:hover{
-background:var(--text);
+background:#e89aa3;
 color:#fff;
 }
 
