@@ -5,62 +5,117 @@
 <title>Aura de Mel | Contato</title>
 
 <style>
+
+*{
+box-sizing:border-box;
+}
+
 body {
-    font-family: system-ui, -apple-system, sans-serif;
-    /* Usei suas duas cores aqui para criar um efeito de 'Aura' premium */
-    background-color: #e9f1f4;
-    background-image: 
-        radial-gradient(circle at 50% -20%, #e89aa3 0%, rgba(233, 241, 244, 0) 75%),
-        radial-gradient(circle at 80% 80%, rgba(232, 154, 163, 0.15) 0%, rgba(233, 241, 244, 0) 50%);
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
-    margin: 0;
+font-family: system-ui,-apple-system,sans-serif;
+
+background-color:#e9f1f4;
+background-image:
+radial-gradient(circle at 50% -20%, #e89aa3 0%, rgba(233,241,244,0) 75%),
+radial-gradient(circle at 80% 80%, rgba(232,154,163,0.15) 0%, rgba(233,241,244,0) 50%);
+
+background-attachment:fixed;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+min-height:100vh;
+
+padding:20px;
+margin:0;
+
+text-align:center;
 }
 
-.container {
-    max-width: 500px;
-    background: rgba(255, 255, 255, 0.2); /* Sutil transparência premium */
-    backdrop-filter: blur(10px);
-    padding: 60px 40px;
-    border-radius: 4px;
-    border: 1px solid rgba(232, 154, 163, 0.2);
+.container{
+
+width:100%;
+max-width:680px;
+
+background:rgba(255,255,255,0.25);
+
+backdrop-filter:blur(14px);
+
+padding:80px 60px;
+
+border-radius:10px;
+
+border:1px solid rgba(232,154,163,0.25);
+
+box-shadow:0 25px 60px rgba(0,0,0,0.08);
 }
 
-h1 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: 300;
-    letter-spacing: -1px;
+h1{
+
+font-size:clamp(2rem,4vw,2.8rem);
+
+margin-bottom:25px;
+
+color:#333;
+
+font-weight:300;
+
+letter-spacing:-0.5px;
 }
 
-p {
-    color: #555;
-    margin-bottom: 30px;
-    line-height: 1.6;
+p{
+
+font-size:clamp(1rem,1.2vw,1.15rem);
+
+color:#555;
+
+margin-bottom:40px;
+
+line-height:1.7;
 }
 
-a {
-    display: inline-block;
-    padding: 14px 35px;
-    background: #e89aa3; /* Sua cor principal no botão */
-    color: white;
-    text-decoration: none;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
+a{
+
+display:inline-block;
+
+padding:18px 48px;
+
+background:#e89aa3;
+
+color:white;
+
+text-decoration:none;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+font-size:0.9rem;
+
+font-weight:600;
+
+border-radius:6px;
+
+transition:all .25s ease;
 }
 
-a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(232, 154, 163, 0.3);
+a:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 14px 28px rgba(232,154,163,0.35);
 }
+
+@media (max-width:600px){
+
+.container{
+
+padding:60px 35px;
+
+}
+
+}
+
 </style>
 
 </head>
@@ -68,12 +123,16 @@ a:hover {
 <body>
 
 <div class="container">
-    <h1>Recebemos seu pedido</h1>
-    <p>
-        Obrigado por entrar em contato com a <strong>Aura de Mel</strong>.<br>
-        Nossa equipe de confeitaria responderá em até 24 horas.
-    </p>
-    <a href="index.html">Voltar ao Início</a>
+
+<h1>Recebemos seu pedido</h1>
+
+<p>
+Obrigado por entrar em contato com a <strong>Aura de Mel</strong>.<br>
+Nossa equipe de confeitaria responderá em até 24 horas.
+</p>
+
+<a href="index.html">Voltar ao Início</a>
+
 </div>
 
 </body>
